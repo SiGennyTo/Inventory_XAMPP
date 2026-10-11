@@ -1,0 +1,29 @@
+        :root {
+            --navy: #1B2A44;
+            --paper: #F4F4F2;
+        }
+        body {
+            background: var(--paper);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        h2, .modal-title { font-family: 'Source Serif 4', Georgia, serif; }
+        .login-card {
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .login-header {
+            background: var(--navy);
+            padding: 2rem;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: var(--navy);
+            border-color: var(--navy);
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #142033;
+            border-color: #142033;
+        }

@@ -1,0 +1,114 @@
+        :root {
+            --navy: #1B2A44;
+            --navy-dark: #13203590;
+            --gold: #8A6A2F;
+            --maroon: #7A2E2E;
+            --forest: #2F5D45;
+            --paper: #F4F4F2;
+        }
+
+        body {
+            background: var(--paper);
+        }
+
+        h1, h2, h5, .modal-title {
+            font-family: 'Source Serif 4', Georgia, serif;
+        }
+
+        /* Header */
+        .app-header {
+            background: var(--navy);
+            border-radius: 6px;
+        }
+
+        /* Header padding so the navy band doesn't look thin */
+        .app-header .card-body {
+            padding-top: 2.25rem;
+            padding-bottom: 2.25rem;
+        }
+
+        .app-panel {
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .app-panel .app-header {
+            border-radius: 0;
+            border: none;
+        }
+        .app-panel .card {
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        .table-flush {
+            margin-bottom: 0;
+        }
+        .table-flush-wrapper {
+            padding: 0;
+        }
+
+        .btn-primary {
+            background-color: var(--navy);
+            border-color: var(--navy);
+        }
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: #142033;
+            border-color: #142033;
+        }
+        .btn-outline-light:hover {
+            color: var(--navy);
+        }
+
+        .table-primary,
+        .table-primary > th,
+        .table-primary > td {
+            background-color: var(--navy) !important;
+            color: #fff;
+        }
+
+        .low-stock-row {
+            background-color: #FDECD3 !important;
+        }
+        .critical-stock-row {
+            background-color: #FADBDE !important;
+        }
+        .threshold-badge {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+        }
+
+
+        .badge-status-ok {
+            background-color: #1E8E5A;
+        }
+        .badge-status-low {
+            background-color: #D97706;
+        }
+        .badge-status-out {
+            background-color: #DC3545;
+        }
+        .badge-threshold {
+            background-color: #6c757d;
+        }
+
+        .btn-edit {
+            background-color: #fff;
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+        .btn-edit:hover {
+            background-color: var(--navy);
+            color: #fff;
+        }
+        .btn-delete {
+            background-color: #fff;
+            border-color: #DC3545;
+            color: #DC3545;
+        }
+        .btn-delete:hover {
+            background-color: #DC3545;
+            color: #fff;
+        }
