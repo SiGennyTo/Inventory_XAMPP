@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Aug 07, 2026 at 02:22 PM
+-- Host: 127.0.0.1:3307
+-- Generation Time: Oct 11, 2026 at 12:40 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -51,7 +51,7 @@ INSERT INTO `categories` (`category_id`, `category_name`, `created_at`) VALUES
 -- Table structure for table `products`
 --
 
-CREATE TABLE IF NOT EXISTS `products` (
+CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -78,8 +78,12 @@ INSERT INTO `products` (`product_id`, `product_name`, `category_id`, `supplier_i
 (8, 'Wireless Keyboard', 4, 1, 35, 2800.00, 10, '2026-08-07 11:38:39', '2026-08-07 11:38:39'),
 (9, 'Stapler Heavy Duty', 5, 3, 60, 450.00, 15, '2026-08-07 11:38:39', '2026-08-07 11:38:39'),
 (10, 'Desktop PC Workstation', 1, 4, 10, 55000.00, 4, '2026-08-07 11:38:39', '2026-08-07 11:38:39'),
-(11, 'Pen Pineapple Pen', 6, 5, 9, 100.00, 10, '2026-08-07 11:39:54', '2026-08-07 11:40:29'),
-(12, 'Kawaii', 6, 6, 0, 1000.00, 5, '2026-08-07 12:21:57', '2026-08-07 12:21:57');
+(11, 'Pen Pineapple Pen', 6, 5, 9, 110.00, 10, '2026-08-07 11:39:54', '2026-08-17 00:56:40'),
+(12, 'Kawaii', 6, 6, 10, 1000.00, 5, '2026-08-07 12:21:57', '2026-08-17 01:31:59'),
+(13, 'Ballpoint Pen (Box)', 3, 7, 50, 10.00, 10, '2026-08-16 16:55:00', '2026-08-16 16:55:00'),
+(14, 'ApplePen', 6, 5, 11, 120.00, 10, '2026-08-16 23:44:15', '2026-08-16 23:45:00'),
+(15, 'Office chair', 3, 7, 100, 2500.00, 10, '2026-08-17 00:36:55', '2026-08-17 00:36:55'),
+(16, 'Office table', 3, 7, 100, 3000.00, 10, '2026-08-17 00:38:46', '2026-08-17 00:38:46');
 
 -- --------------------------------------------------------
 
@@ -87,13 +91,9 @@ INSERT INTO `products` (`product_id`, `product_name`, `category_id`, `supplier_i
 -- Table structure for table `suppliers`
 --
 
-CREATE TABLE IF NOT EXISTS `suppliers` (
+CREATE TABLE `suppliers` (
   `supplier_id` int(11) NOT NULL,
   `supplier_name` varchar(100) NOT NULL,
-  `contact_person` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `address` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -101,13 +101,14 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
 -- Dumping data for table `suppliers`
 --
 
-INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `contact_person`, `phone`, `email`, `address`, `created_at`) VALUES
-(1, 'TechSupply Inc.', 'John Smith', '+1-555-0101', 'john@techsupply.com', '123 Tech Street, Silicon Valley, CA 94000', '2026-08-07 11:38:39'),
-(2, 'OfficePlus', 'Sarah Johnson', '+1-555-0102', 'sarah@officeplus.com', '456 Office Park, Business District, NY 10001', '2026-08-07 11:38:39'),
-(3, 'Global Distributors', 'Mike Wilson', '+1-555-0103', 'mike@globaldist.com', '789 Global Plaza, Chicago, IL 60601', '2026-08-07 11:38:39'),
-(4, 'Prime Electronics', 'Lisa Chen', '+1-555-0104', 'lisa@primeelectronics.com', '321 Prime Ave, Austin, TX 78701', '2026-08-07 11:38:39'),
-(5, 'Shupeh.ph', NULL, NULL, NULL, NULL, '2026-08-07 11:39:54'),
-(6, 'Lazado.ph', NULL, NULL, NULL, NULL, '2026-08-07 12:21:57');
+INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `created_at`) VALUES
+(1, 'TechSupply Inc.', '2026-08-07 11:38:39'),
+(2, 'OfficePlus', '2026-08-07 11:38:39'),
+(3, 'Global Distributors', '2026-08-07 11:38:39'),
+(4, 'Prime Electronics', '2026-08-07 11:38:39'),
+(5, 'Shupeh.ph', '2026-08-07 11:39:54'),
+(6, 'Lazado.ph', '2026-08-07 12:21:57'),
+(7, 'Office Inc.', '2026-08-16 16:55:00');
 
 -- --------------------------------------------------------
 
@@ -115,22 +116,22 @@ INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `contact_person`, `phon
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL UNIQUE,
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('admin','employee') NOT NULL DEFAULT 'employee',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`user_id`)
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
--- Default admin credentials: username: admin | password: admin123
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `role`, `created_at`) VALUES
-(1, 'admin', '$2y$10$mZc/s7EaTMRdkUSEJW552e7eTz.5p6A.nS5Qas0XrE7UcgxZL7rU.', 'admin', current_timestamp());
+(1, 'admin', '$2b$10$yUdaWWcASOkM4DpEQ.W9g.aMkjTQGvG6jiI.gCmSiblfT.KjfQFcm', 'admin', '2026-08-17 00:08:26'),
+(2, 'user', '$2y$10$WjFyt5ZvUPHdHrrH8OK5NujozSDd98TmzLdXg.NJza8LnJgpHeVgO', 'employee', '2026-08-17 00:16:25'),
+(3, 'New', '$2y$10$ylrFzUgRdRLGetzl9Il0O.adVCa5CVijmtz5iY6N.TT0fUKD0EkTe', 'employee', '2026-08-17 00:39:32');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `role`, `created_at`) VA
 -- Stand-in structure for view `vw_inventory_summary`
 -- (See below for the actual view)
 --
-CREATE TABLE IF NOT EXISTS `vw_inventory_summary` (
+CREATE TABLE `vw_inventory_summary` (
 `product_id` int(11)
 ,`product_name` varchar(255)
 ,`category_name` varchar(100)
@@ -157,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `vw_inventory_summary` (
 -- Stand-in structure for view `vw_low_stock_products`
 -- (See below for the actual view)
 --
-CREATE TABLE IF NOT EXISTS `vw_low_stock_products` (
+CREATE TABLE `vw_low_stock_products` (
 `product_id` int(11)
 ,`product_name` varchar(255)
 ,`category_name` varchar(100)
@@ -217,6 +218,13 @@ ALTER TABLE `suppliers`
   ADD UNIQUE KEY `supplier_name` (`supplier_name`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -230,13 +238,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
