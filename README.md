@@ -7,5 +7,5 @@ To set-up:
 
 note:
 the admin credentials is
-username: admin
-password: admin123
+	username: admin
+	password: admin123
