@@ -112,6 +112,29 @@ INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `contact_person`, `phon
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
+  `role` enum('admin','employee') NOT NULL DEFAULT 'employee',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+-- Default admin credentials: username: admin | password: admin123
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `role`, `created_at`) VALUES
+(1, 'admin', '$2y$10$mZc/s7EaTMRdkUSEJW552e7eTz.5p6A.nS5Qas0XrE7UcgxZL7rU.', 'admin', current_timestamp());
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `vw_inventory_summary`
 -- (See below for the actual view)
 --
