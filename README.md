@@ -4,3 +4,8 @@ To set-up:
 4. open your xampp controll panel and start apache and MySql
 5. Click admin on your MySql and create a new databse and name it "inventory_db"
 6. copy and paste the contents of database.sql file to the SQL tab on top of the phpMyAdmin
+
+note:
+the admin credentials is
+username: admin
+password: admin123
